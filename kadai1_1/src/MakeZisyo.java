@@ -4,7 +4,13 @@ import java.util.*;
 /*
  * 
  zisyo.txtを読み込み、
- zisyo2.txtは「文字列　ソートした文字列」の形で、ソートした文字列を大きい順に並び替え
+ zisyo2.txtは「文字列　ソートした文字列」の形で、ソートした文字列を大きい順に並び替えするプログラム。
+ 
+ ＜方針＞
+ ファイルを１行ずつ読み込み、単語の中に大文字があったら小文字に変更して（BigtoSmall）、
+ 文字列内をソート（sort）する。
+ StrSteingの中には、文字列の長さ(le)、元の文字列(s1)、ソートした文字列(s2)入っている。
+ 文字列の長さが長い順に上からファイルに書き込む。
  *
  */
 
@@ -80,23 +86,6 @@ public class MakeZisyo {
 		return new String(after);		
 	}
 	
-	public static int[] count(String input){ //文字内のアルファベット数を数える
-		int[] abc = new int[27];
-		char[] charArray = input.toCharArray();
-		int p;
-		for(int i=0;i<charArray.length;i++){
-			p = charArray[i];
-			if(p>='a' && p <='z'){
-				abc[p-'a']++;
-			}
-			else{
-				abc[26]++;
-			}
-		}
-		return abc;
-	}
-
-
 	
 	class StrStringComparator implements Comparator<StrString>{
 		private final int key;
@@ -109,7 +98,8 @@ public class MakeZisyo {
 			this.key =key;
 		}
 		
-		public int compare(StrString o1,StrString o2){
+		/*比較*/
+		public int compare(StrString o1,StrString o2){ 
 			switch(key){
 				default:
 				case LEN:
@@ -124,7 +114,7 @@ public class MakeZisyo {
 	}
 
 	
-	class StrString{
+	class StrString{ //文字列の長さ、元の単語、ソートされた単語
 		Integer le;
 		String s1;
 		String s2;

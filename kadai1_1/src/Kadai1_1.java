@@ -1,7 +1,16 @@
 import java.io.*;
 
 /*
- 与えられた16文字からなるべく長い単語を出力する。
+ 与えられた16文字からなるべく長い単語を出力するプログラム。
+ 
+ ＜方針＞
+ 与えられた16文字の英単語(str)の中に大文字があったら小文字に変更する(str_small)。
+ (str_small=BigtoSmall(str))
+ 与えられた英単語(str_small)の中のa、b、c、…、z、a~z以外の個数をそれぞれ数えて配列strabcdにいれる。
+（strabcde = count(str_small)）
+ MakeZisyo.javaで作られたファイルを読み込み、辞書内の単語もa~zの個数を数えて
+ 上から順に文字数を比較し、それぞれの個数が与えられた単語より全て少なかったら、発見。
+ それを出力。
  */
 
 public class Kadai1_1 {
@@ -20,7 +29,7 @@ public class Kadai1_1 {
 		int length = str_small.length();
 		int length16 =16;  //与えられた文字列が16と決まっているのでエラー処理するため設定。
 		
-		if(length != length16){
+		if(length != length16){ //16文字でなかったらエラー！
 			System.out.println(length16+"文字入れて下さい！");
 			System.exit(-1);
 		}
